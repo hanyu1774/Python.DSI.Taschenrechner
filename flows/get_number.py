@@ -4,14 +4,18 @@ def get_number(second_input_request: bool = False)-> float:
     first_input_message = "Tippe die erste Zahl ein... \t\t\t"
     second_input_message = "Tippe die zweite Zahl ein... \t\t\t"
     error_message = f"{ForegroundColor.Red}Fehlerhafte Eingabe! Du musst eine Zahl eintippen.{ForegroundColor.Reset}"
+    message_request = ""
+    if second_input_request:
+        message_request = second_input_message
+    else:
+        message_request = first_input_message
 
     while True:
-        if not second_input_request:
-            input_number = input(first_input_message).strip()
-        else:
-            input_number = input(second_input_message).strip()
-        if not input_number.isdecimal():
-            print(f"{error_message}");
-            continue;
-        break;
-    return float(input_number)
+        input_number = input(message_request).strip()
+        try:
+            return float(input_number)
+        except Exception:
+            print(error_message)
+            continue
+        break
+    return 0;

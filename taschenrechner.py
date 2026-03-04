@@ -3,19 +3,6 @@
 
 # Diese Klasse namens ForegroundColor hat Farbcodes zum
 # Aendern der Schriftfarbe in der Konsole.
-# Diese Farbcodes sind in der "Escape notation", 
-# da sie zur "Escape-Sequenz gehoeren".
-# Die Farbecodes sind hinter dem "\"-Zeichen
-#
-# Was ist eine Escape-Sequenz?
-# Der Befehl "\n" ist z.B. eine Escape-Sequenz, die
-# am Ende eines Strings eine neue Zeile erzeugt
-# Anwendung: 
-# print("Hallo!\nWie geht es dir?")
-#
-
-# Jede Variable der Klasse ForegroundColor, also jede Farbe,
-# hat seinen eigenen Farbcode
 class ForegroundColor:
     Red: str = "\033[31m"
     LightRubyRed: str = "\033[38;5;197m"
@@ -25,14 +12,8 @@ class ForegroundColor:
     Orange: str = "\033[38;5;208m"
     Reset: str = "\033[0m"
 
-# Anwendung - Hier wird die Schriftfarbe des Strings in der print() Funktion
-# auf gelb gesetzt.
-# print(f"{ForegroundColor.Yello}Hallo, wie geht es dir?{ForegroundColor.Reset}")
-# Man muss am Ende des Strings die benutzte Farbe zuerucksetzen, sonst wird die Farbe des gesamten
-# Textes in der Konsole geaendert
-
 dividing_line = 57 * '#'
-header = f"{ForegroundColor.Green}{dividing_line}\nGuten Tag!\nIch bin der beste Taschenrechner!\nIch kann +, -, x, /, //, % und ** berechnen!\n{dividing_line}{ForegroundColor.Reset}"
+header = f"{dividing_line}\nGuten Tag!\nIch bin der beste Taschenrechner!\nIch kann +, -, x, /, //, % und ** berechnen!\n{dividing_line}"
 footer = f"{dividing_line}\nProgram wird beendet...\n{dividing_line}"
 
 operator_map = {
@@ -81,18 +62,22 @@ def get_number(second_input_request: bool = False)-> float:
     first_input_message = "Tippe die erste Zahl ein... \t\t\t"
     second_input_message = "Tippe die zweite Zahl ein... \t\t\t"
     error_message = f"{ForegroundColor.Red}Fehlerhafte Eingabe! Du musst eine Zahl eintippen.{ForegroundColor.Reset}"
+    message_request = ""
+    if second_input_request:
+        message_request = second_input_message
+    else:
+        message_request = first_input_message
 
     while True:
-        if not second_input_request:
-            input_number = input(first_input_message).strip()
-        else:
-            input_number = input(second_input_message).strip()
-        if not input_number.isdecimal():
-            print(f"{error_message}");
-            continue;
-        break;
-    return float(input_number)
-
+        input_number = input(message_request).strip()
+        try:
+            return float(input_number)
+        except Exception:
+            print(error_message)
+            continue
+        break
+    return 0;
+       
 def get_operator():
     chosen_operator = ""
     valid_operators = ["+", "-", "x", "/", "//", "%", "**"]
@@ -107,7 +92,7 @@ def get_operator():
     return chosen_operator
 
 def get_result_message(first_number: float, operator: str, second_number: float, result: float)-> str:
-    return f"Das Ergebnis der Rechnung {first_number} {operator} {second_number} lautet {result} !"
+    return f"Das Ergebnis der Rechnung {first_number} {operator} {second_number} lautet {result:.2f} !"
 
 
 # ── Workflow ─────────────────────────────────────────────────────
