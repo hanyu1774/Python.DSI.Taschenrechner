@@ -12,7 +12,7 @@ class ForegroundColor:
     Orange: str = "\033[38;5;208m"
     Reset: str = "\033[0m"
 
-dividing_line = 57 * '#'
+dividing_line = 65 * '#'
 header = f"{dividing_line}\nGuten Tag!\nIch bin der beste Taschenrechner!\nIch kann +, -, x, /, //, % und ** berechnen!\n{dividing_line}"
 footer = f"{dividing_line}\nProgram wird beendet...\n{dividing_line}"
 
@@ -74,10 +74,8 @@ def get_number(second_input_request: bool = False)-> float:
             return float(input_number)
         except Exception:
             print(error_message)
-            continue
-        break
     return 0;
-       
+
 def get_operator():
     chosen_operator = ""
     valid_operators = ["+", "-", "x", "/", "//", "%", "**"]
@@ -93,7 +91,6 @@ def get_operator():
 
 def get_result_message(first_number: float, operator: str, second_number: float, result: float)-> str:
     return f"Das Ergebnis der Rechnung {first_number} {operator} {second_number} lautet {result:.2f} !"
-
 
 # ── Workflow ─────────────────────────────────────────────────────
 # Orchestrierung der Logik
