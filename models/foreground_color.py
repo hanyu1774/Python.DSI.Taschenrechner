@@ -1,6 +1,4 @@
-from enum import Enum
-
-# Dieses Dictionary hat Farbcodes zum
+# Diese Klasse hat Farbcodes zum
 # Aendern der Schriftfarbe in der Konsole
 # Diese Farbcodes sind in der "Escape notation", 
 # da sie zur "Escape-Sequenz gehoeren".
@@ -15,15 +13,16 @@ from enum import Enum
 # Diese Farbcodes funktionieren nur in der Konsole
 
 
-# Hier ist eine Enum-Klasse namens "Color".
-# Ein Enum ist eine eigener, definierter Datentyp
-# Jede Farbe entspricht ihren eigenen Datentyp
-class ForegroundColor(Enum):
-    Red = "\033[31m",
-    Green = "\033[32m",
-    Yellow = "\033[33m",
-    Blue = "\033[34m"
-    Reset = "\033[0m"
+# Hier ist eine Klasse namens "ForegroundColor".
+# Jede Variable, also jede Farbe,
+# hat seinen eigenen Farbcode
+class ForegroundColor:
+    Red: str = "\033[31m"
+    Green: str = "\033[32m"
+    Yellow: str = "\033[33m"
+    Cyan: str = "\033[36m"
+    Orange: str = "\033[38;5;208m"
+    Reset: str = "\033[0m"
 
 
 # Wie man es benutzt?
@@ -31,4 +30,4 @@ class ForegroundColor(Enum):
 # Anwendung:
 # print(f"{ForegroundColor.Yello}Hallo, wie geht es dir?{ForegroundColor.Reset}")
 # Man muss am Ende des Strings die benutzte Farbe zuerucksetzen, sonst wird die Farbe des gesamten
-# Textes in der Konsole geaendert.
+# Textes in der Konsole geaendert
