@@ -18,6 +18,7 @@
 # hat seinen eigenen Farbcode
 class ForegroundColor:
     Red: str = "\033[31m"
+    LightRubyRed: str = "\033[38;5;197m"
     Green: str = "\033[32m"
     Yellow: str = "\033[33m"
     Cyan: str = "\033[36m"
@@ -127,12 +128,12 @@ def run_workflow():
         second_number = get_number(True)
         calculation_result = calculate(selected_operator, first_number, second_number)
         result_message = get_result_message(first_number, selected_operator, second_number, calculation_result) 
-        print(f"{ForegroundColor.Yellow}{dividing_line}\n{result_message}\n{dividing_line}{ForegroundColor.Reset}")
+        print(f"{ForegroundColor.Orange}{dividing_line}\n{result_message}\n{dividing_line}{ForegroundColor.Reset}")
         another_round: bool = do_another_calculation()
         if another_round:
             continue
         break
-    print(f"{ForegroundColor.Green}{footer}{ForegroundColor.Reset}") 
+    print(f"{ForegroundColor.LightRubyRed}{footer}{ForegroundColor.Reset}") 
 
 # ── Ausfuerung des Taschenrechners ────────────────────────────────────────────────────────────────
 
