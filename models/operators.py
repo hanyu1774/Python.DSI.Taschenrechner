@@ -1,8 +1,4 @@
-from enum import Enum
-class Operator(Enum):
-    Plus = "+"
-    Minus = "-"
-    Multiply = "*"
-    Divide = "/"
-
-
+plus = "+"
+minus = "-"
+multiply = "*"
+divide = "/"
